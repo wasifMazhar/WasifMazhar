@@ -108,7 +108,7 @@ gsap.to(".about-img", {
   scrollTrigger: {
     trigger: ".about-img-container",
     start: "top bottom",
-    end: "bottom top",
+    end: "top 30%",
     scrub: true,
   },
   scale: 1.2,
