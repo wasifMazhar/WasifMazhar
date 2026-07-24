@@ -8,7 +8,7 @@ document.addEventListener("mousemove", (e) => {
 });
 
 const hoverables = document.querySelectorAll(
-  "a, .skill-tag, .logo, .menu-btn, .menu-link, .project-card"
+  "a, .skill-tag, .logo, .menu-btn, .menu-link, .project-card",
 );
 hoverables.forEach((el) => {
   el.addEventListener("mouseenter", () => cursor.classList.add("hovered"));
@@ -100,7 +100,7 @@ gsap.fromTo(
     duration: 1,
     stagger: 0.05,
     ease: "power3.out",
-  }
+  },
 );
 
 /* Parallax */
@@ -113,4 +113,37 @@ gsap.to(".about-img", {
   },
   scale: 1.2,
   ease: "none",
+});
+
+/* Certificates*/
+const certificateCards = document.querySelectorAll(".certificate-card");
+
+certificateCards.forEach((card) => {
+  const maxTilt = 6; // degrees
+
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateY = (x / rect.width - 0.5) * maxTilt * 2;
+    const rotateX = (y / rect.height - 0.5) * -maxTilt * 2;
+
+    gsap.to(card, {
+      rotateX,
+      rotateY,
+      transformPerspective: 800,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+  });
+
+  card.addEventListener("mouseleave", () => {
+    gsap.to(card, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.6,
+      ease: "power3.out",
+    });
+  });
 });
