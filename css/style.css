@@ -267,6 +267,38 @@ nav {
   text-transform: uppercase;
   font-size: 0.8rem;
   letter-spacing: 1px;
+  /* Added lines below for arrow alignment */
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+/* New code to create and animate the arrow */
+.project-link::after {
+  content: "\2192"; /* Unicode for right arrow */
+  color: var(--accent-color);
+  margin-left: 8px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  font-size: 1rem;
+}
+
+.project-card:hover .project-link::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.project-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 }
 
 /* Skills */
